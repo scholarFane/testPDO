@@ -8,9 +8,14 @@
 		}
 
 		public function invoke() {
-			$result = $this->model->getLogin($_POST['username'], $_POST['password']);
-			if($result == 'login') {
-				include 'views/afterlogin.php';
+			if(isset($_POST['username'], $_POST['password'])){
+				$result = $this->model->getLogin($_POST['username'], $_POST['password']);
+				if($result == 'login') {
+					include 'views/afterlogin.php';
+				}
+				else{
+					include 'views/login.php';
+				}
 			}
 			else{
 				include 'views/login.php';
